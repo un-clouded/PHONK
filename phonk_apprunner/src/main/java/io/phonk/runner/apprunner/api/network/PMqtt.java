@@ -59,12 +59,21 @@ public class PMqtt extends ProtoBase {
     }
 
     /**
-     * Connect to a broker. I needs an object as follows
+     * Connect to a broker. It needs an object as follows
      * {
-     *     broker: 'tcp://192.168.1.10',
-     *     clientId: 'phonk',
-     *     user: 'myuser',
-     *     password: 'mypassword'
+     *    broker:            'tcp://192.168.1.10:1883',   // Port is optional, default 1883
+     *    connectionTimeout:  10,     // In seconds, default is 30
+     *    autoReconnect:      true,
+     *    user:      'myuser',        // Optional
+     *    password:  'mypassword',    // Required if 'user' is present
+     *    clientId:  'phonk',
+     *    will: {                     // Optional
+     *      topic:     'phonk/byebye',
+     *      payload:   'I\'m disconnected',
+     *      qos:        1,
+     *      retained:   false
+     *    },
+     *    cleanSession: true
      * }
      * @param connectionSettings
      * @return
